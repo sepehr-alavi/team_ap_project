@@ -1,5 +1,3 @@
-import com.sun.deploy.net.cookie.DeployCookieSelector;
-import com.sun.org.apache.bcel.internal.generic.LAND;
 
 public class LandingStrip extends IdentifiableObject{
     private Coordinate begginingTreshold;
