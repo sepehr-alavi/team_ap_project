@@ -1,6 +1,4 @@
-/**
- * Created by Sepehr on 3/31/2017.
- */
+
 public class MachineGun extends AntiAircraft implements AntiAircraftFunction{
     private double damage;
 

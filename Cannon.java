@@ -1,6 +1,4 @@
-/**
- * Created by Sepehr on 3/31/2017.
- */
+
 public class Cannon extends AntiAircraft implements AntiAircraftFunction{
     private double missChance;
     private double fireRate;
