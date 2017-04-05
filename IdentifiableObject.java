@@ -2,6 +2,7 @@
 public class IdentifiableObject {
     private String name;
 
+    //Getter and setter
     public String getName() {
         return name;
     }

@@ -3,6 +3,7 @@ public class Coordinate {
     public double lat;
     public double lon;
 
+    //Getters and setters
     public double getLat() {
         return lat;
     }

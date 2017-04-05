@@ -3,6 +3,7 @@ public class Aircraft extends GeometricalObject{
     private double speed;
     private int enteringTime;
 
+    //Getters and setters
     public double getSpeed() {
         return speed;
     }
