@@ -12,10 +12,10 @@ public class MachineGun extends AntiAircraft implements AntiAircraftFunction{
     }
 
     //Constructor
-    public MachineGun( String name, double lat, double lon, int price, double damage ) {
+    public MachineGun( String name, int price, double range, double damage ) {
         this.setName(name);
-        this.setCoordinate(lat, lon);
         this.setPrice( price );
+        this.setRange( range );
         this.damage = damage;
     }
 

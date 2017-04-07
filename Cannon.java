@@ -21,10 +21,10 @@ public class Cannon extends AntiAircraft implements AntiAircraftFunction{
     }
 
     //Constructor
-    public Cannon( String name, double lat, double lon, int price, double missChance , double fireRate ) {
+    public Cannon( String name, int price, double range, double missChance , double fireRate ) {
         this.setName(name);
-        this.setCoordinate(lat, lon);
         this.setPrice( price );
+        this.setRange( range );
         this.missChance = missChance;
         this.fireRate = fireRate;
     }
