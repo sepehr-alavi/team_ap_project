@@ -1,5 +1,6 @@
 
-//Used as main class.
+//Used as main class
+import java.util.ArrayList;
 import java.util.Scanner;
 public class controlTower {
     private int money;
@@ -25,6 +26,7 @@ public class controlTower {
         double money = scanner.nextDouble();
         AirPort airPort = new AirPort("AirBase",latA,lonA,scanner.nextInt());
         int num = scanner.nextInt();
+        ArrayList<Aircraft> aircrafts= new ArrayList<Aircraft>();
         for (int i = 0; i < num ; i++) {
             String name = scanner.next();
             double lat = scanner.nextDouble();
@@ -35,9 +37,11 @@ public class controlTower {
             int x = scanner.nextInt(); //hp or passengersCount
             if (type.equals("fighter")) {
                 Fighter fighter = new Fighter(name, lat, lon, speed, enteringTime, x);
+                aircrafts.add(fighter);
             }
             else if (type.equals("airline")) {
                 AirPlane airPlane = new AirPlane (name, lat, lon, speed, enteringTime, x);
+                aircrafts.add(airPlane);
             }
         }
 
