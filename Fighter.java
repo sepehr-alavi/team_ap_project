@@ -12,7 +12,7 @@ public class Fighter extends Aircraft{
     }
 
     //Constructor
-    public Fighter(  String name, double lat, double lon, double speed, int enteringTime, int hp ){
+    public Fighter(  String name, double lat, double lon, double speed, double enteringTime, int hp ){
         this.setName( name );
         this.setCoordinate( lat, lon );
         this.setSpeed( speed );

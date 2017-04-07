@@ -1,7 +1,7 @@
 
 public class Aircraft extends GeometricalObject{
     private double speed;
-    private int enteringTime;
+    private double enteringTime;
 
     //Getters and setters
     public double getSpeed() {
@@ -12,11 +12,11 @@ public class Aircraft extends GeometricalObject{
         this.speed = speed;
     }
 
-    public int getEnteringTime() {
+    public double getEnteringTime() {
         return enteringTime;
     }
 
-    public void setEnteringTime(int enteringTime) {
+    public void setEnteringTime(double enteringTime) {
         this.enteringTime = enteringTime;
     }
 }

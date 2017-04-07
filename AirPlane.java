@@ -12,7 +12,7 @@ public class AirPlane extends Aircraft{
     }
 
     //Constructor
-    public AirPlane( String name, double lat, double lon, double speed, int enteringTime, int passengersCount ){
+    public AirPlane( String name, double lat, double lon, double speed, double enteringTime, int passengersCount ){
         this.setName( name );
         this.setCoordinate( lat, lon );
         this.setSpeed( speed );
