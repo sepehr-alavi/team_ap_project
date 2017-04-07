@@ -1,5 +1,6 @@
-import java.util.Scanner;
+
 //Used as main class
+import java.util.Scanner;
 public class controlTower {
     private int money;
 
