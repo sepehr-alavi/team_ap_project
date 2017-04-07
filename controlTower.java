@@ -1,5 +1,5 @@
 
-//Used as main class
+//Used as main class.
 import java.util.Scanner;
 public class controlTower {
     private int money;
