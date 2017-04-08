@@ -3,6 +3,7 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.lang.Math;
 public class controlTower {
     private static int money;
     private static AntiAircraft[] database = new AntiAircraft[6];
@@ -19,6 +20,35 @@ public class controlTower {
     }
 
     //Methods
+    static double TowPointDistance (Coordinate coordinate1 , Coordinate coordinate2){
+        coordinate1.lat = coordinate1.lat * (Math.PI / 180);
+        coordinate2.lat = coordinate2.lat * (Math.PI / 180);
+        coordinate1.lon = coordinate1.lon * (Math.PI / 180);
+        coordinate2.lon = coordinate2.lon * (Math.PI / 180);
+        double distance = 6371 * Math.acos( ( Math.sin( coordinate1.lat ) * Math.sin( coordinate2.lat ) ) + ( Math.cos( coordinate1.lat ) * Math.cos( coordinate2.lat ) * Math.cos( coordinate2.lon - coordinate1.lon )) );
+        return distance * (180 / Math.PI);
+    }
+
+    static double Angle (Coordinate coordinate1, Coordinate coordinate2) {
+        coordinate1.lat = coordinate1.lat * (Math.PI / 180);
+        coordinate2.lat = coordinate2.lat * (Math.PI / 180);
+        coordinate1.lon = coordinate1.lon * (Math.PI / 180);
+        coordinate2.lon = coordinate2.lon * (Math.PI / 180);
+        double teta = Math.atan2( Math.sin( coordinate2.lon - coordinate1.lon ) * Math.cos( coordinate2.lat ) , ( Math.sin( coordinate1.lat ) * Math.cos( coordinate2.lat ) * Math.cos( coordinate2.lon - coordinate1.lon)));
+        return teta * (180 / Math.PI);
+    }
+
+    static Coordinate FinalPoint (Coordinate coordinate1 ,  double teta , double distance){
+        coordinate1.lat = coordinate1.lat * (Math.PI / 180);
+        coordinate1.lon = coordinate1.lon * (Math.PI / 180);
+        Coordinate coordinate2 = new Coordinate();
+        coordinate2.lat = Math.asin(( Math.sin( coordinate1.lat ) * Math.cos( distance/6371 ) ) + ( Math.cos(coordinate1.lat) * Math.sin( distance/6371 ) * Math.cos( teta )));
+        coordinate2.lon = coordinate1.lon + Math.atan2( Math.sin( teta ) * Math.sin( distance/6371 ) * Math.cos(coordinate1.lat) , ( Math.cos( distance/6371 ) ) - ( Math.sin( coordinate1.lat ) * Math.sin( coordinate1.lat )));
+        coordinate2.lat *= 180 / Math.PI;
+        coordinate2.lon *= 180 / Math.PI;
+        return coordinate2;
+    }
+
     public static void createAntiAircraft( String name, double lat, double lon ){
         for(int i = 0; i < 6; i++ ){
             //Enaugh money
