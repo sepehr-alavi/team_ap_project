@@ -20,22 +20,22 @@ public class controlTower {
     }
 
     //Methods
-    static double TowPointDistance (Coordinate coordinate1 , Coordinate coordinate2){
-        coordinate1.lat = coordinate1.lat * (Math.PI / 180);
-        coordinate2.lat = coordinate2.lat * (Math.PI / 180);
-        coordinate1.lon = coordinate1.lon * (Math.PI / 180);
-        coordinate2.lon = coordinate2.lon * (Math.PI / 180);
-        double distance = 6371 * Math.acos( ( Math.sin( coordinate1.lat ) * Math.sin( coordinate2.lat ) ) + ( Math.cos( coordinate1.lat ) * Math.cos( coordinate2.lat ) * Math.cos( coordinate2.lon - coordinate1.lon )) );
-        return distance * (180 / Math.PI);
+    /*static double TowPointDistance (Coordinate coordinate1 , Coordinate coordinate2){
+        //coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
+        //coordinate2.lat = coordinate2.lat * (Math.PI / 180);
+        //coordinate1.lon = coordinate1.lon * (Math.PI / 180);
+        //coordinate2.lon = coordinate2.lon * (Math.PI / 180);
+        //double distance = 6371 * Math.acos( ( Math.sin( coordinate1.lat ) * Math.sin( coordinate2.lat ) ) + ( Math.cos( coordinate1.lat ) * Math.cos( coordinate2.lat ) * Math.cos( coordinate2.lon - coordinate1.lon )) );
+        //return distance * (180 / Math.PI);
     }
 
     static double Angle (Coordinate coordinate1, Coordinate coordinate2) {
-        coordinate1.lat = coordinate1.lat * (Math.PI / 180);
-        coordinate2.lat = coordinate2.lat * (Math.PI / 180);
-        coordinate1.lon = coordinate1.lon * (Math.PI / 180);
-        coordinate2.lon = coordinate2.lon * (Math.PI / 180);
-        double teta = Math.atan2( Math.sin( coordinate2.lon - coordinate1.lon ) * Math.cos( coordinate2.lat ) , ( Math.sin( coordinate1.lat ) * Math.cos( coordinate2.lat ) * Math.cos( coordinate2.lon - coordinate1.lon)));
-        return teta * (180 / Math.PI);
+        //coordinate1.lat = coordinate1.lat * (Math.PI / 180);
+        //coordinate2.lat = coordinate2.lat * (Math.PI / 180);
+        //coordinate1.lon = coordinate1.lon * (Math.PI / 180);
+        //coordinate2.lon = coordinate2.lon * (Math.PI / 180);
+        //double teta = Math.atan2( Math.sin( coordinate2.lon - coordinate1.lon ) * Math.cos( coordinate2.lat ) , ( Math.sin( coordinate1.lat ) * Math.cos( coordinate2.lat ) * Math.cos( coordinate2.lon - coordinate1.lon)));
+        //return teta * (180 / Math.PI);
     }
 
     static Coordinate FinalPoint (Coordinate coordinate1 ,  double teta , double distance){
@@ -47,7 +47,7 @@ public class controlTower {
         coordinate2.lat *= 180 / Math.PI;
         coordinate2.lon *= 180 / Math.PI;
         return coordinate2;
-    }
+    }*/
 
     public static void createAntiAircraft( String name, double lat, double lon ){
         for(int i = 0; i < 6; i++ ){
@@ -75,8 +75,6 @@ public class controlTower {
         database[3] = new Cannon( "torm1", 10000, 12, 90, 15);
         database[4] = new Cannon( "mersad", 15000, 40, 90, 30);
         database[5] = new Cannon( "bavar373", 40000, 150, 90, 30);
-
-
 
         double lat_UpLeft = scanner.nextDouble();
         double lon_UpLeft = scanner.nextDouble();
@@ -108,6 +106,12 @@ public class controlTower {
             else if (type.equals("airline")) {
                 AirPlane airPlane = new AirPlane (name, lat, lon, speed, enteringTime, x);
                 aircrafts.add(airPlane);
+            }
+        }
+
+        while( aircrafts.size() > 0  ){
+            for( int i = 0; i < aircrafts.size(); i++ ){
+
             }
         }
 
