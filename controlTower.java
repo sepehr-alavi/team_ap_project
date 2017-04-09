@@ -24,7 +24,7 @@ public class controlTower {
         coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
         coordinate2.setLat( coordinate2.getLat() * ( Math.PI / 180 ) );
         coordinate1.setLon( coordinate1.getLon() * ( Math.PI / 180 ) );
-        coordinate2.setLon( coordinate1.getLon() * ( Math.PI / 180 ) );
+        coordinate2.setLon( coordinate2.getLon() * ( Math.PI / 180 ) );
         double distance = 6371 * Math.acos( ( Math.sin( coordinate1.getLat() ) * Math.sin( coordinate2.getLat() ) ) + ( Math.cos( coordinate1.getLat() ) * Math.cos( coordinate2.getLat() ) * Math.cos( coordinate2.getLon() - coordinate1.getLon() )) );
         return distance;
     }
