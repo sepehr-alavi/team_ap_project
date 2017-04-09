@@ -1,7 +1,7 @@
 
 public class AirPlane extends Aircraft{
     private int passengersCount;
-    private int bearing;
+    private double bearing;
 
     //Getter and setter
     public int getPassengersCount() {
@@ -12,11 +12,11 @@ public class AirPlane extends Aircraft{
         this.passengersCount = passengersCount;
     }
 
-    public int getBearing() {
+    public double getBearing() {
         return bearing;
     }
 
-    public void setBearing(int bearing) {
+    public void setBearing(double bearing) {
         this.bearing = bearing;
     }
 
