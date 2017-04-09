@@ -19,6 +19,7 @@ public class controlTower {
         this.money = money;
     }
 
+
     //Methods
     static double distance (Coordinate coordinate1 , Coordinate coordinate2){
         coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
