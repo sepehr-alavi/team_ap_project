@@ -20,16 +20,16 @@ public class controlTower {
     }
 
     //Methods
-    static double TowPointDistance (Coordinate coordinate1 , Coordinate coordinate2){
+    static double distance (Coordinate coordinate1 , Coordinate coordinate2){
         coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
         coordinate2.setLat( coordinate2.getLat() * ( Math.PI / 180 ) );
         coordinate1.setLon( coordinate1.getLon() * ( Math.PI / 180 ) );
         coordinate2.setLon( coordinate1.getLon() * ( Math.PI / 180 ) );
         double distance = 6371 * Math.acos( ( Math.sin( coordinate1.getLat() ) * Math.sin( coordinate2.getLat() ) ) + ( Math.cos( coordinate1.getLat() ) * Math.cos( coordinate2.getLat() ) * Math.cos( coordinate2.getLon() - coordinate1.getLon() )) );
-        return distance * (180 / Math.PI);
+        return distance;
     }
 
-    static double Angle (Coordinate coordinate1, Coordinate coordinate2) {
+    static double angle (Coordinate coordinate1, Coordinate coordinate2) {
         coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
         coordinate2.setLat( coordinate2.getLat() * ( Math.PI / 180 ) );
         coordinate1.setLon( coordinate1.getLon() * ( Math.PI / 180 ) );
@@ -38,7 +38,7 @@ public class controlTower {
         return teta * (180 / Math.PI);
     }
 
-    static Coordinate FinalPoint (Coordinate coordinate1 ,  double teta , double distance){
+    static Coordinate finalPoint (Coordinate coordinate1 ,  double teta , double distance){
         coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
         coordinate1.setLon( coordinate1.getLon() * ( Math.PI / 180 ) );
         Coordinate coordinate2 = new Coordinate();
