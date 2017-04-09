@@ -22,29 +22,47 @@ public class controlTower {
 
     //Methods
     static double distance (Coordinate coordinate1 , Coordinate coordinate2){
+        //radian to degree
         coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
         coordinate2.setLat( coordinate2.getLat() * ( Math.PI / 180 ) );
         coordinate1.setLon( coordinate1.getLon() * ( Math.PI / 180 ) );
         coordinate2.setLon( coordinate2.getLon() * ( Math.PI / 180 ) );
         double distance = 6371 * Math.acos( ( Math.sin( coordinate1.getLat() ) * Math.sin( coordinate2.getLat() ) ) + ( Math.cos( coordinate1.getLat() ) * Math.cos( coordinate2.getLat() ) * Math.cos( coordinate2.getLon() - coordinate1.getLon() )) );
+        //degree to radian
+        coordinate1.setLat( coordinate1.getLat() * ( 180 / Math.PI  ) );
+        coordinate2.setLat( coordinate2.getLat() * ( 180 / Math.PI  ) );
+        coordinate1.setLon( coordinate1.getLon() * ( 180 / Math.PI  ) );
+        coordinate2.setLon( coordinate2.getLon() * ( 180 / Math.PI  ) );
         return distance;
     }
 
     static double angle (Coordinate coordinate1, Coordinate coordinate2) {
+        //degree to radian
         coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
         coordinate2.setLat( coordinate2.getLat() * ( Math.PI / 180 ) );
         coordinate1.setLon( coordinate1.getLon() * ( Math.PI / 180 ) );
         coordinate2.setLon( coordinate2.getLon() * ( Math.PI / 180 ) );
         double teta = Math.atan2( Math.sin( coordinate2.getLon() - coordinate1.getLon() ) * Math.cos( coordinate2.getLat() ) , ( Math.sin( coordinate1.getLat() ) * Math.cos( coordinate2.getLat() ) * Math.cos( coordinate2.getLon() - coordinate1.getLon())));
+        //radian to degree
+        coordinate1.setLat( coordinate1.getLat() * ( 180 / Math.PI  ) );
+        coordinate2.setLat( coordinate2.getLat() * ( 180 / Math.PI  ) );
+        coordinate1.setLon( coordinate1.getLon() * ( 180 / Math.PI  ) );
+        coordinate2.setLon( coordinate2.getLon() * ( 180 / Math.PI  ) );
         return teta * (180 / Math.PI);
     }
 
     static Coordinate finalPoint (Coordinate coordinate1 ,  double teta , double distance){
+
         coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
         coordinate1.setLon( coordinate1.getLon() * ( Math.PI / 180 ) );
+
         Coordinate coordinate2 = new Coordinate();
         coordinate2.setLat( Math.asin(( Math.sin( coordinate1.getLat() ) * Math.cos( distance/6371 ) ) + ( Math.cos(coordinate1.getLat()) * Math.sin( distance/6371 ) * Math.cos( teta ))) );
-        coordinate2.setLon(coordinate1.getLon() + Math.atan2( Math.sin( teta ) * Math.sin( distance/6371 ) * Math.cos(coordinate1.getLat()) , ( Math.cos( distance/6371 ) ) - ( Math.sin( coordinate1.getLat() ) * Math.sin( coordinate1.getLat() ))));
+        coordinate2.setLon(coordinate1.getLon() + Math.atan2( Math.sin( teta ) * Math.sin( distance/6371 ) * Math.cos(coordinate1.getLat()) , ( Math.cos( distance/6371 ) ) - ( Math.sin( coordinate1.getLat() ) * Math.sin( coordinate2.getLat() ))));
+
+        coordinate1.setLat( coordinate2.getLat() * ( 180 / Math.PI ) );
+        coordinate1.setLon( coordinate2.getLon() * ( 180 / Math.PI ) );
+
         coordinate2.setLat( coordinate2.getLat() * ( 180 / Math.PI ) );
         coordinate2.setLon( coordinate2.getLon() * ( 180 / Math.PI ) );
         return coordinate2;
