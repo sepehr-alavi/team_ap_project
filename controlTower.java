@@ -9,7 +9,7 @@ public class controlTower {
     private static AntiAircraft[] database = new AntiAircraft[6];
     private static ArrayList<Aircraft> aircrafts= new ArrayList<Aircraft>();
     private static ArrayList<AntiAircraft> antiAircrafts = new ArrayList<AntiAircraft>();
-
+    static AirPort airPort;
     //Getter and setter
     public int getMoney() {
         return money;
@@ -21,6 +21,32 @@ public class controlTower {
 
 
     //Methods
+    static void checkCollisions (){
+        for( int i = 0; i < aircrafts.size(); i++ ){
+            AirPlane checkedAirPlane = (AirPlane)aircrafts.get( i );
+            for( int j = i+1; j < aircrafts.size(); j++ ){
+                AirPlane checkedAirPlane2 = (AirPlane)aircrafts.get( j );
+                if( checkedAirPlane.checkTwoAirPlanesCollision( checkedAirPlane2 ) == true ) {
+                    airPort.setHp(airPort.getHp() - 1);
+                    System.out.println(checkedAirPlane.getName() + " and " + checkedAirPlane2.getName() + " crashed. Lives = " + airPort.getHp() );
+                    aircrafts.remove(aircrafts.get(i));
+                    aircrafts.remove(aircrafts.get(j));
+                }
+            }
+        }
+    }
+
+    static void checkArrivals(){
+        for( int i = 0; i < aircrafts.size(); i++ ){
+            AirPlane arrivedAirPlane = (AirPlane)aircrafts.get( i );
+            if( arrivedAirPlane.checkArivval() == true ){
+                //Paying method (will be added)
+                System.out.println( arrivedAirPlane.getName() + " landed. Money = " + money );
+                aircrafts.remove( aircrafts.get( i ) );
+            }
+        }
+    }
+
     static double distance (Coordinate coordinate1 , Coordinate coordinate2){
         //radian to degree
         coordinate1.setLat( coordinate1.getLat() * ( Math.PI / 180 ) );
@@ -106,7 +132,7 @@ public class controlTower {
 
         double money = scanner.nextDouble();
 
-        AirPort airPort = new AirPort("AirBase",latA,lonA,scanner.nextInt());
+        airPort = new AirPort("AirBase",latA,lonA,scanner.nextInt());
 
         int num = scanner.nextInt();
 
@@ -129,9 +155,10 @@ public class controlTower {
         }
 
         while( aircrafts.size() > 0  ){
-            for( int i = 0; i < aircrafts.size(); i++ ){
+            checkCollisions();
+            checkArrivals();
 
-            }
+
         }
 
         String s = scanner.next(); //buy or control
