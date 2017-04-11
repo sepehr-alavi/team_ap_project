@@ -1,6 +1,6 @@
 
 //Used as main class
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.lang.Math;
@@ -23,15 +23,19 @@ public class controlTower {
     //Methods
     static void checkCollisions (){
         //check fighter
-        for( int i = 0; i < aircrafts.size(); i++ ){
-            AirPlane checkedAirPlane = (AirPlane)aircrafts.get( i );
-            for( int j = i+1; j < aircrafts.size(); j++ ){
-                AirPlane checkedAirPlane2 = (AirPlane)aircrafts.get( j );
-                if( checkedAirPlane.checkTwoAirPlanesCollision( checkedAirPlane2 ) == true ) {
-                    airPort.setHp(airPort.getHp() - 1);
-                    System.out.println(checkedAirPlane.getName() + " and " + checkedAirPlane2.getName() + " crashed. Lives = " + airPort.getHp() );
-                    aircrafts.remove(aircrafts.get(i));
-                    aircrafts.remove(aircrafts.get(j));
+        for( int i = 0; i < aircrafts.size() ; i++ ){
+            if( aircrafts.get( i ) instanceof AirPlane == true ) {
+                AirPlane checkedAirPlane = (AirPlane) aircrafts.get(i);
+                for (int j = i + 1; j < aircrafts.size() && aircrafts.get(i) instanceof Fighter == false; j++) {
+                    if( aircrafts.get( j ) instanceof AirPlane == true ) {
+                        AirPlane checkedAirPlane2 = (AirPlane) aircrafts.get(j);
+                        if (checkedAirPlane.checkTwoAirPlanesCollision(checkedAirPlane2) == true) {
+                            airPort.setHp(airPort.getHp() - 1);
+                            System.out.println(checkedAirPlane.getName() + " and " + checkedAirPlane2.getName() + " crashed. Lives = " + airPort.getHp());
+                            aircrafts.remove(aircrafts.get(i));
+                            aircrafts.remove(aircrafts.get(j));
+                        }
+                    }
                 }
             }
         }
@@ -39,11 +43,12 @@ public class controlTower {
 
     static void checkArrivals(){
         for( int i = 0; i < aircrafts.size(); i++ ){
-            AirPlane arrivedAirPlane = (AirPlane)aircrafts.get( i );
-            if( arrivedAirPlane.checkArivval() == true ){
+            if( aircrafts.get( i ) instanceof AirPlane == true ) {
+                AirPlane arrivedAirPlane = (AirPlane) aircrafts.get(i);
+
                 //Paying method (will be added)
-                System.out.println( arrivedAirPlane.getName() + " landed. Money = " + money );
-                aircrafts.remove( aircrafts.get( i ) );
+                System.out.println(arrivedAirPlane.getName() + " landed. Money = " + money);
+                aircrafts.remove(aircrafts.get(i));
             }
         }
     }
@@ -95,7 +100,7 @@ public class controlTower {
         return coordinate2;
     }
 
-    public static void createAntiAircraft( String name, double lat, double lon ){
+    private static void createAntiAircraft( String name, double lat, double lon ){
         for(int i = 0; i < 6; i++ ){
             //Enaugh money
             if( database[i].getName().equals( name ) && money >= database[i].getPrice() ) {
