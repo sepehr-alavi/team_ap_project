@@ -1,7 +1,8 @@
 
-public class Aircraft extends GeometricalObject{
+public class Aircraft extends GeometricalObject {
     private double speed;
     private double enteringTime;
+    private double bearing;
 
     //Getters and setters
     public double getSpeed() {
@@ -20,9 +21,17 @@ public class Aircraft extends GeometricalObject{
         this.enteringTime = enteringTime;
     }
 
+    public double getBearing() {
+        return bearing;
+    }
+
+    public void setBearing(double bearing) {
+        this.bearing = bearing;
+    }
+
     //Methods
-    public boolean checkArivval (){
-        if( controlTower.distance( this.getCoordinate(), controlTower.airPort.getCoordinate() ) <= 0.1 )
+    public boolean checkArivval() {
+        if (controlTower.distance(this.getCoordinate(), controlTower.airPort.getCoordinate()) <= 0.1)
             return true;
 
         else return false;
