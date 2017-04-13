@@ -44,10 +44,8 @@ public class controlTower {
     static void checkArrivals(){
         for( int i = 0; i < aircrafts.size(); i++ ){
             if( aircrafts.get( i ) instanceof AirPlane == true ) {
-                AirPlane arrivedAirPlane = (AirPlane) aircrafts.get(i);
-
                 //Paying method (will be added)
-                System.out.println(arrivedAirPlane.getName() + " landed. Money = " + money);
+                System.out.println(aircrafts.get(i).getName() + " landed. Money = " + money);
                 aircrafts.remove(aircrafts.get(i));
             }
         }

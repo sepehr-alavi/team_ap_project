@@ -37,10 +37,4 @@ public class AirPlane extends Aircraft{
         else return false;
     }
 
-    public boolean checkArivval (){
-        if( controlTower.distance( this.getCoordinate(), controlTower.airPort.getCoordinate() ) <= 0.1 )
-            return true;
-
-        else return false;
-    }
 }

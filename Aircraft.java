@@ -19,4 +19,12 @@ public class Aircraft extends GeometricalObject{
     public void setEnteringTime(double enteringTime) {
         this.enteringTime = enteringTime;
     }
+
+    //Methods
+    public boolean checkArivval (){
+        if( controlTower.distance( this.getCoordinate(), controlTower.airPort.getCoordinate() ) <= 0.1 )
+            return true;
+
+        else return false;
+    }
 }
