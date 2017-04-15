@@ -190,7 +190,7 @@ public class controlTower {
                 AirPlane airPlane = new AirPlane(name, lat, lon, speed, enteringTime, x);
                 airPlane.setDestination(airPort.getCoordinate());
                 airPlane.setBearing(angle(airPlane.getCoordinate(), airPlane.getDestination()));
-                savedAircrafts.add(airPlane);
+                savedAircrafts.add(airPlane);//
             }
         }
 
