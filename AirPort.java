@@ -12,6 +12,14 @@ public class AirPort extends GeometricalObject {
         this.hp = hp;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     //Constructor
     public AirPort(String name, double lat, double lon, int hp) {
         this.setName(name);

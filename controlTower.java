@@ -30,6 +30,12 @@ public class controlTower {
 
 
     //Methods
+
+    static void paymoney ( int passenger ){
+        money += passenger *(10 + airPort.getLevel());
+        airPort.setLevel( airPort.getLevel() + 1 );
+    }
+
     public void move() {
 
     }
@@ -66,7 +72,8 @@ public class controlTower {
     static void checkArrivals() {
         for (int i = 0; i < aircrafts.size(); i++) {
             if (aircrafts.get(i) instanceof AirPlane == true) {
-                //Paying method (will be added)
+                AirPlane arrivedairplane = (AirPlane) aircrafts.get(i);
+                paymoney( arrivedairplane.getPassengersCount());
                 System.out.println(aircrafts.get(i).getName() + " landed. Money = " + money);
                 aircrafts.remove(aircrafts.get(i));
             } else if (aircrafts.get(i) instanceof Fighter == true) {

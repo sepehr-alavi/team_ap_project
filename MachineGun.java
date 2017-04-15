@@ -21,5 +21,6 @@ public class MachineGun extends AntiAircraft implements AntiAircraftFunction{
 
     //Methods
     public void shoot( Fighter fighter ){
+
     }
 }
