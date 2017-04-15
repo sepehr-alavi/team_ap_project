@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 public class controlTower {
     private static int money;
     private static AntiAircraft[] database = new AntiAircraft[6];
-    private static ArrayList<Aircraft> savedAircrafts = new ArrayList<Aircraft>();
+    static ArrayList<Aircraft> savedAircrafts = new ArrayList<Aircraft>();
     private static ArrayList<AntiAircraft> antiAircrafts = new ArrayList<AntiAircraft>();
     static ArrayList<Aircraft> aircrafts = new ArrayList<Aircraft>();
     static AirPort airPort;
@@ -53,7 +53,9 @@ public class controlTower {
                             airPort.setHp(airPort.getHp() - 1);
                             System.out.println(checkedAirPlane.getName() + " and " + checkedAirPlane2.getName() + " crashed. Lives = " + airPort.getHp());
                             aircrafts.remove(aircrafts.get(i));
+                            savedAircrafts.remove(aircrafts.get(i));
                             aircrafts.remove(aircrafts.get(j));
+                            savedAircrafts.remove(aircrafts.get(j));
                         }
                     }
                 }
@@ -70,6 +72,7 @@ public class controlTower {
             } else if (aircrafts.get(i) instanceof Fighter == true) {
                 airPort.setHp(airPort.getHp() - 1);
                 aircrafts.remove(aircrafts.get(i));
+                savedAircrafts.remove(aircrafts.get(i));
             }
         }
     }
@@ -121,7 +124,7 @@ public class controlTower {
         return coordinate2;
     }
 
-    private static void createAntiAircraft(String name, double lat, double lon) {
+    public static void createAntiAircraft(String name, double lat, double lon) {
         for (int i = 0; i < 6; i++) {
             //Enaugh money
             if (database[i].getName().equals(name) && money >= database[i].getPrice()) {
@@ -191,11 +194,6 @@ public class controlTower {
             checkArrivals();
 
 
-        }
-
-        String s = scanner.next(); //buy or control
-        if (s.equals("buy")) {
-            createAntiAircraft(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
         }
 
     }

@@ -8,7 +8,7 @@ public class InputThread extends Thread implements Runnable {
 
     @Override
     public void run() {
-        while (controlTower.aircrafts.size() != 0) {
+        while (controlTower.airPort.getHp() != 0 || controlTower.savedAircrafts.size() != 0) {
             String input = scanner.next();
             if (input.equalsIgnoreCase("Control")) {
                 String aircraftName = scanner.next();
@@ -20,8 +20,8 @@ public class InputThread extends Thread implements Runnable {
                         controlTower.aircrafts.get(i).setBearing(controlTower.angle(controlTower.aircrafts.get(i).getCoordinate(), destination));
                     }
                 }
-            }
-
+            } else if (input.equals("buy"))
+                controlTower.createAntiAircraft(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
         }
     }
 }

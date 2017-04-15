@@ -4,7 +4,7 @@
 public class MoveThread extends Thread implements Runnable {
     @Override
     public void run() {
-        while (controlTower.aircrafts.size() != 0) {
+        while (controlTower.airPort.getHp() != 0 || controlTower.savedAircrafts.size() != 0) {
             for (int i = 0; i < controlTower.aircrafts.size(); i++) {
                 Coordinate finalposition = controlTower.finalPoint(controlTower.aircrafts.get(i).getCoordinate()
                         , controlTower.aircrafts.get(i).getBearing()
