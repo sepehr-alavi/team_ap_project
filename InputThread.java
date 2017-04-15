@@ -12,12 +12,13 @@ public class InputThread extends Thread implements Runnable {
             String input = scanner.next();
             if (input.equalsIgnoreCase("Control")) {
                 String aircraftName = scanner.next();
-                Coordinate destination = new Coordinate();
-                destination.setLat(scanner.nextDouble());
-                destination.setLon(scanner.nextDouble());
                 for (int i = 0; i < controlTower.aircrafts.size(); i++) {
+
                     if (aircraftName.equals(controlTower.aircrafts.get(i).getName())) {
-                        controlTower.aircrafts.get(i).setBearing(controlTower.angle(controlTower.aircrafts.get(i).getCoordinate(), destination));
+                        controlTower.aircrafts.get(i).getDestination().setLat(scanner.nextDouble());
+                        controlTower.aircrafts.get(i).getDestination().setLon(scanner.nextDouble());
+                        controlTower.aircrafts.get(i).setBearing(controlTower.angle(controlTower.aircrafts.get(i).getCoordinate(),
+                                                                                    controlTower.aircrafts.get(i).getDestination()));
                     }
                 }
             } else if (input.equals("buy"))

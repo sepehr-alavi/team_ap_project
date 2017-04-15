@@ -3,10 +3,20 @@ public class Aircraft extends GeometricalObject {
     private double speed;
     private double enteringTime;
     private double bearing;
+    private Coordinate destination=new Coordinate();
+
 
     //Getters and setters
     public double getSpeed() {
         return speed;
+    }
+
+    public Coordinate getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Coordinate destination) {
+        this.destination = destination;
     }
 
     public void setSpeed(double speed) {

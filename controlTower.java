@@ -183,11 +183,13 @@ public class controlTower {
             int x = scanner.nextInt(); //hp or passengersCount
             if (type.equals("fighter")) {
                 Fighter fighter = new Fighter(name, lat, lon, speed, enteringTime, x);
-                fighter.setBearing(angle(fighter.getCoordinate(), airPort.getCoordinate()));
+                fighter.setDestination(airPort.getCoordinate());
+                fighter.setBearing(angle(fighter.getCoordinate(), fighter.getDestination()));
                 savedAircrafts.add(fighter);
             } else if (type.equals("airline")) {
                 AirPlane airPlane = new AirPlane(name, lat, lon, speed, enteringTime, x);
-                airPlane.setBearing(angle(airPlane.getCoordinate(), airPort.getCoordinate()));
+                airPlane.setDestination(airPort.getCoordinate());
+                airPlane.setBearing(angle(airPlane.getCoordinate(), airPlane.getDestination()));
                 savedAircrafts.add(airPlane);
             }
         }
