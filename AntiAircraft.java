@@ -1,8 +1,11 @@
 //Checked
 
+import java.util.ArrayList;
+
 public class AntiAircraft extends GeometricalObject{
     private int price;
     private double range;
+    static ArrayList<Fighter> fighterInRange = new ArrayList<Fighter>();
 
     //Getter and setter
     public int getPrice() {

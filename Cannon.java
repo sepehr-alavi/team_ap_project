@@ -1,5 +1,7 @@
 //Checked
 
+import java.util.Random;
+
 public class Cannon extends AntiAircraft implements AntiAircraftFunction{
     private double missChance;
     private double fireRate;
@@ -32,5 +34,12 @@ public class Cannon extends AntiAircraft implements AntiAircraftFunction{
 
     //Methods
     public void shoot( Fighter fighter ){
+        Random r = new Random();
+        int persentage = r.nextInt(100) + 1;
+        if ( persentage <= this.getMissChance()){
+            this.fighterInRange.remove(fighter);
+            controlTower.savedAircrafts.remove(fighter);
+            controlTower.savedAircrafts.remove(fighter);
+        }
     }
 }
