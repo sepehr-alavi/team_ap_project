@@ -1,3 +1,4 @@
+//Checked
 
 public class MachineGun extends AntiAircraft implements AntiAircraftFunction{
     private double damage;

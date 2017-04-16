@@ -1,3 +1,4 @@
+//Checked
 
 public class AntiAircraft extends GeometricalObject{
     private int price;

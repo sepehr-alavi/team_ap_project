@@ -1,3 +1,4 @@
+//Checked
 
 public class LandingStrip extends GeometricalObject{
 

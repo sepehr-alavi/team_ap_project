@@ -1,3 +1,4 @@
+//Checked
 
 public class Fighter extends Aircraft{
     private int hp;
@@ -20,7 +21,4 @@ public class Fighter extends Aircraft{
         this.hp = hp;
     }
 
-    //Methods
-    public void destroy(){
-    }
 }

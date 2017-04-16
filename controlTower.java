@@ -1,3 +1,4 @@
+//Checked
 
 //Used as main class
 
@@ -12,13 +13,14 @@ public class controlTower {
     private static int money;
     private static AntiAircraft[] database = new AntiAircraft[6];
     static ArrayList<Aircraft> savedAircrafts = new ArrayList<Aircraft>();
-    private static ArrayList<AntiAircraft> antiAircrafts = new ArrayList<AntiAircraft>();
+    static ArrayList<AntiAircraft> antiAircrafts = new ArrayList<AntiAircraft>();
     static ArrayList<Aircraft> aircrafts = new ArrayList<Aircraft>();
     static AirPort airPort;
-    static ExecutorService threadExecutor = Executors.newCachedThreadPool();
+    static LandingStrip landingStrip;
+    private static ExecutorService threadExecutor = Executors.newCachedThreadPool();
     static CreateAircraftThread[] create;
-    static MoveThread move = new MoveThread();
-    static InputThread getOrder = new InputThread();
+    private static MoveThread move = new MoveThread();
+    private static InputThread getOrder = new InputThread();
     //Getter and setter
     public int getMoney() {
         return money;
@@ -30,14 +32,9 @@ public class controlTower {
 
 
     //Methods
-
-    static void paymoney ( int passenger ){
-        money += passenger *(10 + airPort.getLevel());
+    static void paymoney ( int passengers ){
+        money += passengers *(10 + airPort.getLevel());
         airPort.setLevel( airPort.getLevel() + 1 );
-    }
-
-    public void move() {
-
     }
 
     static public void createAircrafts() {
@@ -52,10 +49,10 @@ public class controlTower {
         for (int i = 0; i < aircrafts.size(); i++) {
             if (aircrafts.get(i) instanceof AirPlane == true) {
                 AirPlane checkedAirPlane = (AirPlane) aircrafts.get(i);
-                for (int j = i + 1; j < aircrafts.size() && aircrafts.get(i) instanceof Fighter == false; j++) {
+                for (int j = i + 1; j < aircrafts.size(); j++) {
                     if (aircrafts.get(j) instanceof AirPlane == true) {
                         AirPlane checkedAirPlane2 = (AirPlane) aircrafts.get(j);
-                        if (checkedAirPlane.checkTwoAirPlanesCollision(checkedAirPlane2) == true) {
+                        if (distance(checkedAirPlane.getCoordinate(), checkedAirPlane2.getCoordinate() ) <= 0.1 ) {
                             airPort.setHp(airPort.getHp() - 1);
                             System.out.println(checkedAirPlane.getName() + " and " + checkedAirPlane2.getName() + " crashed. Lives = " + airPort.getHp());
                             aircrafts.remove(aircrafts.get(i));
@@ -70,16 +67,20 @@ public class controlTower {
     }
 
     static void checkArrivals() {
-        for (int i = 0; i < aircrafts.size(); i++) {
+        for (int i = 0; i < aircrafts.size(); i++){
             if (aircrafts.get(i) instanceof AirPlane == true) {
-                AirPlane arrivedairplane = (AirPlane) aircrafts.get(i);
-                paymoney( arrivedairplane.getPassengersCount());
-                System.out.println(aircrafts.get(i).getName() + " landed. Money = " + money);
-                aircrafts.remove(aircrafts.get(i));
+                if( distance( aircrafts.get(i).getCoordinate(), landingStrip.getCoordinate() ) <= 0.1 ) {
+                    AirPlane arrivedairplane = (AirPlane) aircrafts.get(i);
+                    paymoney(arrivedairplane.getPassengersCount());
+                    System.out.println(aircrafts.get(i).getName() + " landed. Money = " + money);
+                    aircrafts.remove(aircrafts.get(i));
+                }
             } else if (aircrafts.get(i) instanceof Fighter == true) {
-                airPort.setHp(airPort.getHp() - 1);
-                aircrafts.remove(aircrafts.get(i));
-                savedAircrafts.remove(aircrafts.get(i));
+                if (distance(aircrafts.get(i).getCoordinate(), airPort.getCoordinate()) <= 0.1) {
+                    airPort.setHp(airPort.getHp() - 1);
+                    aircrafts.remove(aircrafts.get(i));
+                    savedAircrafts.remove(aircrafts.get(i));
+                }
             }
         }
     }
@@ -165,7 +166,7 @@ public class controlTower {
         double latA = scanner.nextDouble();
         double lonA = scanner.nextDouble();
 
-        LandingStrip landingStrip = new LandingStrip("LandingStrip_1", scanner.nextDouble(), scanner.nextDouble());
+        landingStrip = new LandingStrip("LandingStrip_1", scanner.nextDouble(), scanner.nextDouble());
 
         money = scanner.nextInt();
 

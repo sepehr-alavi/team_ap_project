@@ -1,3 +1,4 @@
+//Checked
 
 public class IdentifiableObject {
     private String name;

@@ -1,3 +1,4 @@
+//Checked
 
 public class AirPlane extends Aircraft {
     private int passengersCount;
@@ -23,11 +24,4 @@ public class AirPlane extends Aircraft {
     }
 
     //Methods
-    public boolean checkTwoAirPlanesCollision(AirPlane airplane) {
-        if (controlTower.distance(this.getCoordinate(), airplane.getCoordinate()) <= 0.1)
-            return true;
-
-        else return false;
-    }
-
 }

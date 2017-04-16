@@ -1,8 +1,8 @@
+//Checked
+//After reaching destination?
+
 import java.util.Scanner;
 
-/**
- * Created by Bahar on 4/13/2017.
- */
 public class InputThread extends Thread implements Runnable {
     Scanner scanner = new Scanner(System.in);
 

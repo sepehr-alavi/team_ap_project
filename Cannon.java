@@ -1,9 +1,10 @@
+//Checked
 
 public class Cannon extends AntiAircraft implements AntiAircraftFunction{
     private double missChance;
     private double fireRate;
 
-    //Getters and stterss
+    //Getters and setters
     public double getMissChance() {
         return missChance;
     }

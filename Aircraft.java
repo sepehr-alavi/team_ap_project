@@ -1,3 +1,4 @@
+//Checked
 
 public class Aircraft extends GeometricalObject {
     private double speed;
@@ -9,14 +10,6 @@ public class Aircraft extends GeometricalObject {
     //Getters and setters
     public double getSpeed() {
         return speed;
-    }
-
-    public Coordinate getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Coordinate destination) {
-        this.destination = destination;
     }
 
     public void setSpeed(double speed) {
@@ -39,11 +32,11 @@ public class Aircraft extends GeometricalObject {
         this.bearing = bearing;
     }
 
-    //Methods
-    public boolean checkArivval() {
-        if (controlTower.distance(this.getCoordinate(), controlTower.airPort.getCoordinate()) <= 0.1)
-            return true;
+    public Coordinate getDestination() {
+        return destination;
+    }
 
-        else return false;
+    public void setDestination(Coordinate destination) {
+        this.destination = destination;
     }
 }

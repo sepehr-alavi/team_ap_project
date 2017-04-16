@@ -27,14 +27,4 @@ public class AirPort extends GeometricalObject {
         this.hp = hp;
     }
 
-    //Methods
-    public void takeDamage() {
-    }
-
-    public void destroy() {
-    }
-
-    public void pay() {
-
-    }
 }

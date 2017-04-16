@@ -1,6 +1,5 @@
-/**
- * Created by Bahar on 4/13/2017.
- */
+//Checked
+
 public class CreateAircraftThread extends Thread implements Runnable {
     Aircraft aircraft = new Aircraft();
 

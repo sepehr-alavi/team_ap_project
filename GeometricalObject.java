@@ -1,3 +1,4 @@
+//Checked
 
 public class GeometricalObject extends IdentifiableObject {
     private Coordinate coordinate = new Coordinate();
