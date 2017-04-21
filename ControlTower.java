@@ -187,7 +187,7 @@ public class ControlTower {
                 fighter.setDestination(airPort.getCoordinate());
                 fighter.setBearing(angle(fighter.getCoordinate(), fighter.getDestination()));
                 savedAircrafts.add(fighter);
-            } else if (type.equals("airline")) {
+            } else if (type.equals("airliner")) {
                 AirPlane airPlane = new AirPlane(name, lat, lon, speed, enteringTime, x);
                 airPlane.setDestination(airPort.getCoordinate());
                 airPlane.setBearing(angle(airPlane.getCoordinate(), airPlane.getDestination()));
