@@ -2,9 +2,9 @@
 
 import java.util.Random;
 
-public class Cannon extends AntiAircraft implements AntiAircraftFunction{
+public class Cannon extends AntiAircraft {
     private double missChance;
-    private double fireRate;
+    private int fireRate;
 
     //Getters and setters
     public double getMissChance() {
@@ -15,16 +15,16 @@ public class Cannon extends AntiAircraft implements AntiAircraftFunction{
         this.missChance = missChance;
     }
 
-    public double getFireRate() {
+    public int getFireRate() {
         return fireRate;
     }
 
-    public void setFireRate(double fireRate) {
+    public void setFireRate(int fireRate) {
         this.fireRate = fireRate;
     }
 
     //Constructor
-    public Cannon( String name, int price, double range, double missChance , double fireRate ) {
+    public Cannon( String name, int price, double range, double missChance , int fireRate ) {
         this.setName(name);
         this.setPrice( price );
         this.setRange( range );
@@ -38,8 +38,8 @@ public class Cannon extends AntiAircraft implements AntiAircraftFunction{
         int persentage = r.nextInt(100) + 1;
         if ( persentage <= this.getMissChance()){
             this.fighterInRange.remove(fighter);
-            controlTower.savedAircrafts.remove(fighter);
-            controlTower.savedAircrafts.remove(fighter);
+            ControlTower.savedAircrafts.remove(fighter);
+            ControlTower.savedAircrafts.remove(fighter);
         }
     }
 }

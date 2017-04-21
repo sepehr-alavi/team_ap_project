@@ -2,7 +2,7 @@
 
 import java.util.ArrayList;
 
-public class AntiAircraft extends GeometricalObject{
+abstract public class AntiAircraft extends GeometricalObject{
     private int price;
     private double range;
     static ArrayList<Fighter> fighterInRange = new ArrayList<Fighter>();
@@ -25,4 +25,6 @@ public class AntiAircraft extends GeometricalObject{
     public void setRange(double range) {
         this.range = range;
     }
+
+    abstract public void shoot( Fighter fighter );
 }

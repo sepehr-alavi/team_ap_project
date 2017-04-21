@@ -14,7 +14,7 @@ public class CreateAircraftThread extends Thread implements Runnable {
         } catch (InterruptedException e) {
             System.out.println("Intrrupted");
         }
-        controlTower.aircrafts.add(aircraft);
+        ControlTower.aircrafts.add(aircraft);
 
     }
 }

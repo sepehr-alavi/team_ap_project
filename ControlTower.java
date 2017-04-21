@@ -9,7 +9,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class controlTower {
+public class ControlTower {
     private static int money;
     private static AntiAircraft[] database = new AntiAircraft[6];
     static ArrayList<Aircraft> savedAircrafts = new ArrayList<Aircraft>();

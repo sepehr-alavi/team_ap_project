@@ -1,6 +1,6 @@
 //Checked
 
-public class MachineGun extends AntiAircraft implements AntiAircraftFunction{
+public class MachineGun extends AntiAircraft {
     private int damage;
 
     //Getter and setter
@@ -25,8 +25,8 @@ public class MachineGun extends AntiAircraft implements AntiAircraftFunction{
         fighter.setHp( fighter.getHp() - this.damage );
         if ( fighter.getHp() <= 0 ){
             this.fighterInRange.remove(fighter);
-            controlTower.savedAircrafts.remove(fighter);
-            controlTower.savedAircrafts.remove(fighter);
+            ControlTower.savedAircrafts.remove(fighter);
+            ControlTower.savedAircrafts.remove(fighter);
         }
     }
 }

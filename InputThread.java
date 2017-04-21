@@ -8,21 +8,21 @@ public class InputThread extends Thread implements Runnable {
 
     @Override
     public void run() {
-        while (controlTower.airPort.getHp() != 0 || controlTower.savedAircrafts.size() != 0) {
+        while (ControlTower.airPort.getHp() != 0 || ControlTower.savedAircrafts.size() != 0) {
             String input = scanner.next();
             if (input.equalsIgnoreCase("Control")) {
                 String aircraftName = scanner.next();
-                for (int i = 0; i < controlTower.aircrafts.size(); i++) {
+                for (int i = 0; i < ControlTower.aircrafts.size(); i++) {
 
-                    if (aircraftName.equals(controlTower.aircrafts.get(i).getName())) {
-                        controlTower.aircrafts.get(i).getDestination().setLat(scanner.nextDouble());
-                        controlTower.aircrafts.get(i).getDestination().setLon(scanner.nextDouble());
-                        controlTower.aircrafts.get(i).setBearing(controlTower.angle(controlTower.aircrafts.get(i).getCoordinate(),
-                                                                                    controlTower.aircrafts.get(i).getDestination()));
+                    if (aircraftName.equals(ControlTower.aircrafts.get(i).getName())) {
+                        ControlTower.aircrafts.get(i).getDestination().setLat(scanner.nextDouble());
+                        ControlTower.aircrafts.get(i).getDestination().setLon(scanner.nextDouble());
+                        ControlTower.aircrafts.get(i).setBearing(ControlTower.angle(ControlTower.aircrafts.get(i).getCoordinate(),
+                                                                                    ControlTower.aircrafts.get(i).getDestination()));
                     }
                 }
             } else if (input.equals("buy"))
-                controlTower.createAntiAircraft(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
+                ControlTower.createAntiAircraft(scanner.next(), scanner.nextDouble(), scanner.nextDouble());
         }
     }
 }
