@@ -1,6 +1,7 @@
 //Checked
 
-import javafx.scene.shape.Path;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
@@ -8,6 +9,8 @@ abstract public class AntiAircraft extends GeometricalObject{
     private int price;
     private double range;
     static ArrayList<Fighter> fighterInRange = new ArrayList<Fighter>();
+    Image image ;
+    ImageView ax ;
 
     //Getter and setter
     public int getPrice() {

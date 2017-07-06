@@ -12,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -20,8 +19,6 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import java.lang.Math;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -34,11 +31,27 @@ public class ControlTower extends Application{
         Scene scene = new Scene(root);
         Text text1 = new Text(1220,30,"Money:       " + Integer.toString(getMoney()));
         Text text2 = new Text(1220, 60, "hp:              " + Integer.toString(airPort.getHp()));
+        Text text3 = new Text(1220,100, Integer.toString(database[0].getPrice()));
+        Text text4 = new Text(1220,200, Integer.toString(database[1].getPrice()));
+        Text text5 = new Text(1220,300, Integer.toString(database[2].getPrice()));
+        Text text6 = new Text(1220,400, Integer.toString(database[3].getPrice()));
+        Text text7 = new Text(1220,500, Integer.toString(database[4].getPrice()));
+        Text text8 = new Text(1220,600, Integer.toString(database[5].getPrice()));
         text1.setFill(Color.WHITE);
         text2.setFill(Color.WHITE);
+        text3.setFill(Color.WHITE);
+        text4.setFill(Color.WHITE);
+        text5.setFill(Color.WHITE);
+        text6.setFill(Color.WHITE);
+        text7.setFill(Color.WHITE);
+        text8.setFill(Color.WHITE);
+
+
 
         root.getChildren().add(text1);
         root.getChildren().add(text2);
+        root.getChildren().addAll(text3 , text4 , text5 , text6 , text7 , text8);
+        root.getChildren().addAll(database[0].ax , database[1].ax , database[2].ax , database[3].ax , database[4].ax , database[5].ax);
 
         primaryStage.setTitle("padafandi");
 
@@ -150,6 +163,22 @@ public class ControlTower extends Application{
                 }
             }
         });
+
+//        scene.setOnMouseClicked(event -> {
+//            PointerInfo mouse = MouseInfo.getPointerInfo();
+//            double x = mouse.getLocation().getX();
+//            double y = mouse.getLocation().getY();
+//
+//            for (int i = 0; i < 6; i++) {
+//                database[i].ax.setOnMouseClicked(event2 -> {
+//                    ImageView selectedAntiAircraft = new ImageView(database[i].image);
+//                    selectedAntiAircraft.setLayoutX(x);
+//                    selectedAntiAircraft.setLayoutY(y);
+//
+//
+//                });
+//            }
+//        });
         primaryStage.show();
     }
 
@@ -299,11 +328,47 @@ public class ControlTower extends Application{
         airPort = new AirPort("Air Base", 0, 0, 3);
         //Anti aircrafts database
         database[0] = new MachineGun("samavat", 1000, 4, 500);
+        database[0].image = new Image("Media\\Samavat.png");
+        database[0].ax = new ImageView(database[0].image);
+        database[0].ax.setFitHeight(75);
+        database[0].ax.setFitWidth(75);
+        database[0].ax.setX(1250);
+        database[0].ax.setY(90);
         database[1] = new MachineGun("saeer", 2000, 11, 300);
+        database[1].image = new Image("Media\\Saeer.png");
+        database[1].ax = new ImageView(database[1].image);
+        database[1].ax.setFitHeight(75);
+        database[1].ax.setFitWidth(75);
+        database[1].ax.setX(1250);
+        database[1].ax.setY(190);
         database[2] = new Cannon("shahab_sagheb", 5000, 12, 80, 30);
+        database[2].image = new Image("Media\\Shahab_sagheb.png");
+        database[2].ax = new ImageView(database[2].image);
+        database[2].ax.setFitHeight(75);
+        database[2].ax.setFitWidth(75);
+        database[2].ax.setX(1250);
+        database[2].ax.setY(290);
         database[3] = new Cannon("torm1", 10000, 12, 90, 15);
+        database[3].image = new Image("Media\\Torm1.png");
+        database[3].ax = new ImageView(database[3].image);
+        database[3].ax.setFitHeight(75);
+        database[3].ax.setFitWidth(75);
+        database[3].ax.setX(1250);
+        database[3].ax.setY(390);
         database[4] = new Cannon("mersad", 15000, 40, 90, 30);
+        database[4].image = new Image("Media\\Mersad.png");
+        database[4].ax = new ImageView(database[4].image);
+        database[4].ax.setFitHeight(75);
+        database[4].ax.setFitWidth(75);
+        database[4].ax.setX(1250);
+        database[4].ax.setY(490);
         database[5] = new Cannon("bavar373", 40000, 150, 90, 30);
+        database[5].image = new Image("Media\\Bavar373.png");
+        database[5].ax = new ImageView(database[5].image);
+        database[5].ax.setFitHeight(75);
+        database[5].ax.setFitWidth(75);
+        database[5].ax.setX(1250);
+        database[5].ax.setY(590);
 
 //        double lat_UpLeft = scanner.nextDouble();
 //        double lon_UpLeft = scanner.nextDouble();
