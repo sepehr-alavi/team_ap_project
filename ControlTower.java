@@ -36,8 +36,8 @@ public class ControlTower extends Application{
         primaryStage.setWidth(1200);
         Random random = new Random();
 
-        Image padafandiImg = new Image("file:C:\\Users\\Sepehr\\Desktop\\project\\Padafandi.png");
-        Image furudgahiImg = new Image("file:C:\\Users\\Sepehr\\Desktop\\project\\Furudgahi.jpg");
+        Image padafandiImg = new Image("Media\\Padafandi.png");
+        Image furudgahiImg = new Image("Media\\Furudgahi.png");
 
         ImageView backgroundImgView = new ImageView(padafandiImg);
         backgroundImgView.setFitWidth(1200);
@@ -73,7 +73,7 @@ public class ControlTower extends Application{
 
         //Create airLiners and fighters
         Timeline createTimeline = new Timeline();
-        KeyFrame createKeyFrame = new KeyFrame(Duration.millis(3000 + random.nextInt(2000)), event -> {
+        KeyFrame createKeyFrame = new KeyFrame(Duration.millis(5000 + random.nextInt(3000)), event -> {
             if (random.nextBoolean() == true) { //Left or right
                 Fighter fighter = new Fighter(1200 * random.nextInt(2), random.nextInt(801), 100 + random.nextInt(100), 1500 + random.nextInt(1500));
                 fighters.add(fighter);

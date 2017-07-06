@@ -7,7 +7,7 @@ import javafx.scene.shape.Circle;
 
 public class AirPlane extends Aircraft {
     private int passengersCount;
-    Image image = new Image("file:C:\\Users\\Sepehr\\Desktop\\project\\Airliner.png");
+    Image image = new Image("Media\\Airliner.png");
     ImageView ax = new ImageView(image);
 
     //Getter and setter

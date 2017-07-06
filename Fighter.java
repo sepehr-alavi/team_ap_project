@@ -9,7 +9,7 @@ import javafx.scene.shape.LineTo;
 
 public class Fighter extends Aircraft{
     private int hp;
-    Image image = new Image("file:C:\\Users\\Sepehr\\Desktop\\project\\Fighter.png");
+    Image image = new Image("Media\\Fighter.png");
     ImageView ax = new ImageView(image);
     LineTo lineTo = new LineTo(600, 400);
 
