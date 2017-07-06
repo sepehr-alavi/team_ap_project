@@ -164,21 +164,6 @@ public class ControlTower extends Application{
             }
         });
 
-//        scene.setOnMouseClicked(event -> {
-//            PointerInfo mouse = MouseInfo.getPointerInfo();
-//            double x = mouse.getLocation().getX();
-//            double y = mouse.getLocation().getY();
-//
-//            for (int i = 0; i < 6; i++) {
-//                database[i].ax.setOnMouseClicked(event2 -> {
-//                    ImageView selectedAntiAircraft = new ImageView(database[i].image);
-//                    selectedAntiAircraft.setLayoutX(x);
-//                    selectedAntiAircraft.setLayoutY(y);
-//
-//
-//                });
-//            }
-//        });
         primaryStage.show();
     }
 
