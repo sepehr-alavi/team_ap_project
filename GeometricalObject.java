@@ -4,10 +4,10 @@ public class GeometricalObject extends IdentifiableObject {
     private Coordinate coordinate = new Coordinate();
 
     //Setters and getters
-    public void setCoordinate(double lat, double lon) {
+    public void setCoordinate(double x, double y) {
 
-        this.coordinate.setLat(lat);
-        this.coordinate.setLon(lon);
+        this.coordinate.setX(x);
+        this.coordinate.setY(y);
     }
 
     public Coordinate getCoordinate() {

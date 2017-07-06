@@ -1,11 +1,13 @@
 //Checked
 
+import javafx.scene.shape.Path;
+
 public class Aircraft extends GeometricalObject {
     private double speed;
     private double enteringTime;
     private double bearing;
     private Coordinate destination=new Coordinate();
-
+    Path path = new Path();
 
     //Getters and setters
     public double getSpeed() {

@@ -1,7 +1,14 @@
 //Checked
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.LineTo;
+
 public class Fighter extends Aircraft{
     private int hp;
+    Circle ax = new Circle(5, Color.BLUE);
+    LineTo lineTo = new LineTo(600, 400);
 
     //Getter and setter
     public int getHp() {
@@ -13,11 +20,9 @@ public class Fighter extends Aircraft{
     }
 
     //Constructor
-    public Fighter(  String name, double lat, double lon, double speed, double enteringTime, int hp ){
-        this.setName( name );
-        this.setCoordinate( lat, lon );
+    public Fighter( double x, double y, double speed, int hp ){
+        this.setCoordinate( x, y );
         this.setSpeed( speed );
-        this.setEnteringTime( enteringTime );
         this.hp = hp;
     }
 
