@@ -10,8 +10,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -30,10 +32,21 @@ public class ControlTower extends Application{
 
         Group root = new Group();
         Scene scene = new Scene(root);
+        Text text1 = new Text(1220,30,"Money:       " + Integer.toString(getMoney()));
+        Text text2 = new Text(1220, 60, "hp:              " + Integer.toString(airPort.getHp()));
+        text1.setFill(Color.WHITE);
+        text2.setFill(Color.WHITE);
+
+        root.getChildren().add(text1);
+        root.getChildren().add(text2);
+
         primaryStage.setTitle("padafandi");
+
         primaryStage.setScene(scene);
+        scene.setFill(Color.GRAY);
         primaryStage.setHeight(800);
-        primaryStage.setWidth(1200);
+        primaryStage.setWidth(1400);
+
         Random random = new Random();
 
         Image padafandiImg = new Image("Media\\Padafandi.png");
@@ -43,6 +56,7 @@ public class ControlTower extends Application{
         backgroundImgView.setFitWidth(1200);
         backgroundImgView.setFitHeight(800);
         root.getChildren().add(backgroundImgView);
+        root.getChildren().get(root.getChildren().size()-1).toBack();
 
 
         //Check arrivals
@@ -75,16 +89,16 @@ public class ControlTower extends Application{
         Timeline createTimeline = new Timeline();
         KeyFrame createKeyFrame = new KeyFrame(Duration.millis(5000 + random.nextInt(3000)), event -> {
             if (random.nextBoolean() == true) { //Left or right
-                Fighter fighter = new Fighter(1200 * random.nextInt(2), random.nextInt(801), 100 + random.nextInt(100), 1500 + random.nextInt(1500));
+                Fighter fighter = new Fighter(1135 * random.nextInt(2), random.nextInt(801), 100 + random.nextInt(100), 1500 + random.nextInt(1500));
                 fighters.add(fighter);
-                AirPlane airLiner = new AirPlane(1200 * random.nextInt(2), random.nextInt(801),100 + random.nextInt(100), 100 + random.nextInt(400));
+                AirPlane airLiner = new AirPlane(1115 * random.nextInt(2), random.nextInt(801),100 + random.nextInt(100), 100 + random.nextInt(400));
                 if( airLiner.getCoordinate().getX() == 0 )
                     //airLiner.setBearing(random );
                 airLiners.add(airLiner);
             } else { //Top or bottom
-                Fighter fighter = new Fighter(random.nextInt(1201),800 * random.nextInt(2), 100 + random.nextInt(100), 1500 + random.nextInt(1500));
+                Fighter fighter = new Fighter(random.nextInt(1135),800 * random.nextInt(2), 100 + random.nextInt(100), 1500 + random.nextInt(1500));
                 fighters.add(fighter);
-                AirPlane airLiner = new AirPlane(random.nextInt(1201), 800 * random.nextInt(2),100 + random.nextInt(100), 100 + random.nextInt(400));
+                AirPlane airLiner = new AirPlane(random.nextInt(1115), 800 * random.nextInt(2),100 + random.nextInt(100), 100 + random.nextInt(400));
                 airLiners.add(airLiner);
             }
             Fighter movingFighter = fighters.get(fighters.size() - 1);
@@ -282,7 +296,7 @@ public class ControlTower extends Application{
     //Main
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        airPort = new AirPort("Air Base", 0, 0, 3);
         //Anti aircrafts database
         database[0] = new MachineGun("samavat", 1000, 4, 500);
         database[1] = new MachineGun("saeer", 2000, 11, 300);
