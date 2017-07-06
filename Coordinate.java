@@ -31,6 +31,7 @@ public class Coordinate {
 
     public void setX(double x) {
         this.x = x;
+        this.lon = (1200/360 * x) - 180;
     }
 
     public double getY() {
@@ -39,5 +40,6 @@ public class Coordinate {
 
     public void setY(double y) {
         this.y = y;
+        this.lat = -1*(800/180*y) - 90;
     }
 }

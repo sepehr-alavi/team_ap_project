@@ -23,7 +23,7 @@ public class AirPort extends GeometricalObject {
     //Constructor
     public AirPort(String name, double lat, double lon, int hp) {
         this.setName(name);
-        this.setCoordinate(lat, lon);
+        this.setCoordinate(600 ,400);
         this.hp = hp;
     }
 

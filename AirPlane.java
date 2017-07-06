@@ -1,11 +1,14 @@
 //Checked
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class AirPlane extends Aircraft {
     private int passengersCount;
-    Circle ax = new Circle(5, Color.RED);
+    Image image = new Image("file:C:\\Users\\Sepehr\\Desktop\\project\\Airliner.png");
+    ImageView ax = new ImageView(image);
 
     //Getter and setter
     public int getPassengersCount() {
@@ -23,6 +26,8 @@ public class AirPlane extends Aircraft {
         this.setSpeed(speed);
        // this.setEnteringTime(enteringTime);
         this.passengersCount = passengersCount;
+        ax.setFitWidth(85);
+        ax.setFitHeight(65);
     }
 
     //Methods

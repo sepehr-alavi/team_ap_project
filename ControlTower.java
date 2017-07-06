@@ -8,6 +8,8 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.stage.Stage;
@@ -33,6 +35,15 @@ public class ControlTower extends Application{
         primaryStage.setHeight(800);
         primaryStage.setWidth(1200);
         Random random = new Random();
+
+        Image padafandiImg = new Image("file:C:\\Users\\Sepehr\\Desktop\\project\\Padafandi.png");
+        Image furudgahiImg = new Image("file:C:\\Users\\Sepehr\\Desktop\\project\\Furudgahi.jpg");
+
+        ImageView backgroundImgView = new ImageView(padafandiImg);
+        backgroundImgView.setFitWidth(1200);
+        backgroundImgView.setFitHeight(800);
+        root.getChildren().add(backgroundImgView);
+
 
         //Check arrivals
         Timeline checkTimeline = new Timeline();
@@ -67,6 +78,8 @@ public class ControlTower extends Application{
                 Fighter fighter = new Fighter(1200 * random.nextInt(2), random.nextInt(801), 100 + random.nextInt(100), 1500 + random.nextInt(1500));
                 fighters.add(fighter);
                 AirPlane airLiner = new AirPlane(1200 * random.nextInt(2), random.nextInt(801),100 + random.nextInt(100), 100 + random.nextInt(400));
+                if( airLiner.getCoordinate().getX() == 0 )
+                    //airLiner.setBearing(random );
                 airLiners.add(airLiner);
             } else { //Top or bottom
                 Fighter fighter = new Fighter(random.nextInt(1201),800 * random.nextInt(2), 100 + random.nextInt(100), 1500 + random.nextInt(1500));
@@ -85,8 +98,7 @@ public class ControlTower extends Application{
             MoveTo moveToFighter = new MoveTo(movingFighter.getCoordinate().getX(), movingFighter.getCoordinate().getY());
             movingFighter.path.getElements().addAll(moveToFighter, movingFighter.lineTo);
 
-//            MoveTo moveToAirLiner = new MoveTo(movingAirLiner.getCoordinate().getX(), movingAirLiner.getCoordinate().getY());
-//            movingAirLiner.path.getElements().addAll(moveToAirLiner, movingAirLiner.lineTo);
+
 
             PathTransition pathTransitionFighter = new PathTransition(Duration.millis(20000),
                     movingFighter.path, movingFighter.ax);
@@ -110,6 +122,7 @@ public class ControlTower extends Application{
 
                     for (int i = 0; i < airLiners.size(); i++)
                         root.getChildren().add(airLiners.get(i).ax);
+                    backgroundImgView.setImage(furudgahiImg);
                     current = "furudgahi";
                 } else if (current.equals("furudgahi")) {
                     primaryStage.setTitle("padafandi");
@@ -118,6 +131,7 @@ public class ControlTower extends Application{
 
                     for (int i = 0; i < fighters.size(); i++)
                         root.getChildren().add(fighters.get(i).ax);
+                    backgroundImgView.setImage(padafandiImg);
                     current = "padafandi";
                 }
             }
@@ -229,6 +243,7 @@ public class ControlTower extends Application{
         coordinate2.setLat(coordinate2.getLat() * (180 / Math.PI));
         coordinate1.setLon(coordinate1.getLon() * (180 / Math.PI));
         coordinate2.setLon(coordinate2.getLon() * (180 / Math.PI));
+        System.out.println(teta * (180 / Math.PI));
         return teta * (180 / Math.PI);
     }
 

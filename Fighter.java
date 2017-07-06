@@ -1,5 +1,7 @@
 //Checked
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -7,8 +9,10 @@ import javafx.scene.shape.LineTo;
 
 public class Fighter extends Aircraft{
     private int hp;
-    Circle ax = new Circle(5, Color.BLUE);
+    Image image = new Image("file:C:\\Users\\Sepehr\\Desktop\\project\\Fighter.png");
+    ImageView ax = new ImageView(image);
     LineTo lineTo = new LineTo(600, 400);
+
 
     //Getter and setter
     public int getHp() {
@@ -24,6 +28,8 @@ public class Fighter extends Aircraft{
         this.setCoordinate( x, y );
         this.setSpeed( speed );
         this.hp = hp;
+        ax.setFitWidth(75);
+        ax.setFitHeight(65);
     }
 
 }
