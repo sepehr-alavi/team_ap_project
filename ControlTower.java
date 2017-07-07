@@ -311,96 +311,34 @@ public class ControlTower extends Application{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         airPort = new AirPort("Air Base", 0, 0, 3);
+
         //Anti aircrafts database
         database[0] = new MachineGun("samavat", 1000, 4, 500);
         database[0].image = new Image("Media\\Samavat.png");
-        database[0].ax = new ImageView(database[0].image);
-        database[0].ax.setFitHeight(75);
-        database[0].ax.setFitWidth(75);
-        database[0].ax.setX(1250);
-        database[0].ax.setY(90);
+
         database[1] = new MachineGun("saeer", 2000, 11, 300);
         database[1].image = new Image("Media\\Saeer.png");
-        database[1].ax = new ImageView(database[1].image);
-        database[1].ax.setFitHeight(75);
-        database[1].ax.setFitWidth(75);
-        database[1].ax.setX(1250);
-        database[1].ax.setY(190);
+
         database[2] = new Cannon("shahab_sagheb", 5000, 12, 80, 30);
         database[2].image = new Image("Media\\Shahab_sagheb.png");
-        database[2].ax = new ImageView(database[2].image);
-        database[2].ax.setFitHeight(75);
-        database[2].ax.setFitWidth(75);
-        database[2].ax.setX(1250);
-        database[2].ax.setY(290);
+
         database[3] = new Cannon("torm1", 10000, 12, 90, 15);
         database[3].image = new Image("Media\\Torm1.png");
-        database[3].ax = new ImageView(database[3].image);
-        database[3].ax.setFitHeight(75);
-        database[3].ax.setFitWidth(75);
-        database[3].ax.setX(1250);
-        database[3].ax.setY(390);
+
         database[4] = new Cannon("mersad", 15000, 40, 90, 30);
         database[4].image = new Image("Media\\Mersad.png");
-        database[4].ax = new ImageView(database[4].image);
-        database[4].ax.setFitHeight(75);
-        database[4].ax.setFitWidth(75);
-        database[4].ax.setX(1250);
-        database[4].ax.setY(490);
+
         database[5] = new Cannon("bavar373", 40000, 150, 90, 30);
         database[5].image = new Image("Media\\Bavar373.png");
-        database[5].ax = new ImageView(database[5].image);
-        database[5].ax.setFitHeight(75);
-        database[5].ax.setFitWidth(75);
-        database[5].ax.setX(1250);
-        database[5].ax.setY(590);
 
-//        double lat_UpLeft = scanner.nextDouble();
-//        double lon_UpLeft = scanner.nextDouble();
-//        double lat_DownRight = scanner.nextDouble();
-//        double lon_DownRight = scanner.nextDouble();
-//        double latA = scanner.nextDouble();
-//        double lonA = scanner.nextDouble();
+        for( int i = 0; i<6; i++ ){
+            database[i].ax = new ImageView(database[i].image);
+            database[i].ax.setFitHeight(75);
+            database[i].ax.setFitWidth(75);
+            database[i].ax.setX(1250);
+            database[i].ax.setY(100*i + 90);
+        }
 
-//        landingStrip = new LandingStrip("LandingStrip_1", scanner.nextDouble(), scanner.nextDouble());
-//
-//        money = scanner.nextInt();
-//
-//        airPort = new AirPort("AirBase", latA, lonA, scanner.nextInt());
-
-//        int num = scanner.nextInt();
-//        create = new CreateAircraftThread[num];
-//        for (int i = 0; i < num; i++) {
-//            String name = scanner.next();
-//            double lat = scanner.nextDouble();
-//            double lon = scanner.nextDouble();
-//            double speed = scanner.nextDouble();
-//            double enteringTime = scanner.nextDouble();
-//            String type = scanner.next();
-//            int x = scanner.nextInt(); //hp or passengersCount
-//            if (type.equals("fighter")) {
-//                Fighter fighter = new Fighter(name, lat, lon, speed, enteringTime, x);
-//                fighter.setDestination(airPort.getCoordinate());
-//                fighter.setBearing(angle(fighter.getCoordinate(), fighter.getDestination()));
-//                savedAircrafts.add(fighter);
-//            } else if (type.equals("airliner")) {
-//                AirPlane airPlane = new AirPlane(name, lat, lon, speed, enteringTime, x);
-//                airPlane.setDestination(airPort.getCoordinate());
-//                airPlane.setBearing(angle(airPlane.getCoordinate(), airPlane.getDestination()));
-//                savedAircrafts.add(airPlane);//
-//            }
-//        }
-
-        //Start
-//        createAircrafts();
-//        threadExecutor.execute(move);
-//        threadExecutor.execute(getOrder);
-//        while (savedAircrafts.size() > 0) {
-//            checkCollisions();
-//            checkArrivals();
-//
-//
-//        }
         launch(args);
 
     }
