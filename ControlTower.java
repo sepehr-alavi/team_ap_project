@@ -81,31 +81,31 @@ public class ControlTower extends Application{
                             root.getChildren().add(selectedAntiAircraft);
                             setMoney(getMoney() - database[index].getPrice());
                             moneytxt.textProperty().bind(Bindings.createStringBinding(() -> ("Money:        "+ Integer.toString(getMoney()))));
+                            root.getChildren().removeAll(ax1[4] , ax1[5]);
+                            if ( getMoney() < 1000 ){
+                                root.getChildren().addAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+                            }
+                            else if ( getMoney() < 2000 ){
+                                root.getChildren().addAll(ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+                            }
+                            else if ( getMoney() < 5000 ){
+                                root.getChildren().addAll(ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+                            }
+                            else if ( getMoney() < 10000 ){
+                                root.getChildren().addAll(ax1[3] , ax1[4] , ax1[5]);
+                            }
+                            else if ( getMoney() < 15000 ){
+                                root.getChildren().addAll(ax1[4] , ax1[5]);
+                            }
+                            else if ( getMoney() < 40000 ){
+                                root.getChildren().addAll(ax1[5]);
+                            }
+                            else
+                                root.getChildren().removeAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
 
                         }
 
                     });
-                    root.getChildren().removeAll(ax1[4] , ax1[5]);
-                    if ( getMoney() < 1000 ){
-                        root.getChildren().addAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
-                    }
-                    else if ( getMoney() < 2000 ){
-                        root.getChildren().addAll(ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
-                    }
-                    else if ( getMoney() < 5000 ){
-                        root.getChildren().addAll(ax1[2] , ax1[3] , ax1[4] , ax1[5]);
-                    }
-                    else if ( getMoney() < 10000 ){
-                        root.getChildren().addAll(ax1[3] , ax1[4] , ax1[5]);
-                    }
-                    else if ( getMoney() < 15000 ){
-                        root.getChildren().addAll(ax1[4] , ax1[5]);
-                    }
-                    else if ( getMoney() < 40000 ){
-                        root.getChildren().addAll(ax1[5]);
-                    }
-                    else
-                        root.getChildren().removeAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
 
                 });
             }
