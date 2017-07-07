@@ -2,12 +2,10 @@
 
 //Used as main class
 
-import com.sun.javafx.scene.paint.GradientUtils;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -78,10 +76,53 @@ public class ControlTower extends Application{
         checkMouseClickTimeline.play();
 
 
+
+
+        Image image1 = new Image("Media\\Stop.png");
+
+        ImageView[] ax1 = new ImageView[6];
+
+        for ( int i=0 ; i < 6 ; i++){
+            ax1[i] = new ImageView(image1);
+            ax1[i].setFitWidth(75);
+            ax1[i].setFitHeight(75);
+            ax1[i].setX(1250);
+            ax1[i].setY(100*i + 90);
+        }
+        scene.setOnMouseClicked(event -> {
+            root.getChildren().removeAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+            if ( getMoney() < 1000 ){
+                root.getChildren().addAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+            }
+            else if ( getMoney() < 2000 ){
+                root.getChildren().addAll(ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+            }
+            else if ( getMoney() < 5000 ){
+                root.getChildren().addAll(ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+            }
+            else if ( getMoney() < 10000 ){
+                root.getChildren().addAll(ax1[3] , ax1[4] , ax1[5]);
+            }
+            else if ( getMoney() < 15000 ){
+                root.getChildren().addAll(ax1[4] , ax1[5]);
+            }
+            else if ( getMoney() < 4000 ){
+                root.getChildren().addAll(ax1[5]);
+            }
+            else
+                root.getChildren().removeAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+        });
+
+
+
+
+
+
         root.getChildren().add(text1);
         root.getChildren().add(text2);
         root.getChildren().addAll(text3 , text4 , text5 , text6 , text7 , text8);
         root.getChildren().addAll(database[0].ax , database[1].ax , database[2].ax , database[3].ax , database[4].ax , database[5].ax);
+        root.getChildren().addAll(ax1[4] , ax1[5]);
 
         primaryStage.setTitle("padafandi");
 
@@ -101,20 +142,19 @@ public class ControlTower extends Application{
         root.getChildren().add(backgroundImgView);
         root.getChildren().get(root.getChildren().size()-1).toBack();
 
-
         //Check arrivals
         Timeline checkTimeline = new Timeline();
         KeyFrame checkKeyframe = new KeyFrame(Duration.millis(50), event -> {
-            //    System.out.println(distance(airPort.getCoordinate().getX(), airPort.getCoordinate().getY(), fighters.get(0).ax.getLayoutX(), fighters.get(0).ax.getLayoutY()));
-//            for (int i = 0; i <fighters.size() ; i++) {
-//                if (distance( airport.getX(), airport.getY(), fighters.get(i).getX(), fighters.get(i).getY()) < 20 ){
-//                    airport.setHp(airport.getHp()-1);
-//                    root.getChildren().remove(fighters.get(i).ax);
-//                    System.out.println("hi");
-//                    fighters.remove(i);
-//                    //game over check she
-//                }
-//            }
+            //for (int i = 0; i <fighters.size() ; i++) {
+
+                System.out.println(Math.sqrt(Math.pow(fighters.get(0).getCoordinate().getX()-600 , 2) + Math.pow(fighters.get(0).getCoordinate().getY()-400 , 2)));
+                if (Math.sqrt(Math.pow(fighters.get(0).getCoordinate().getX()-600 , 2) + Math.pow(fighters.get(0).getCoordinate().getY()-400 , 2)) < 50){
+                    airPort.setHp(airPort.getHp()-1);
+                    root.getChildren().remove(fighters.get(0).ax);
+                    fighters.remove(0);
+                    //game over check she
+                }
+
 //            for (int i = 0; i <airLiners.size() ; i++) {
 //                if (distance( airport.getX(), airport.getY(), airLiners.get(i).getX(), airLiners.get(i).getY()) < 20 ){
 //                    paymoney(airLiners.get(i).getPassengerCount());
@@ -205,7 +245,7 @@ public class ControlTower extends Application{
         primaryStage.show();
     }
 
-    private static int money;
+    private static int money = 10000;
     private static AntiAircraft[] database = new AntiAircraft[6];
     static ArrayList<Aircraft> savedAircrafts = new ArrayList<Aircraft>();
     static ArrayList<AntiAircraft> antiAircrafts = new ArrayList<AntiAircraft>();

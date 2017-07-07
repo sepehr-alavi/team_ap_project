@@ -28,7 +28,6 @@ public class Fighter extends Aircraft{
         ax.setFitWidth(75);
         ax.setFitHeight(65);
         setBearing(Math.atan(((this.getCoordinate().getY() - 400) / (this.getCoordinate().getX() - 600)))* (180 / Math.PI));
-        System.out.println(getBearing());
         ax.setRotate(180 + getBearing());
         if( this.getCoordinate().getX() > 600 )
             ax.setRotate(ax.getRotate() + 180);
