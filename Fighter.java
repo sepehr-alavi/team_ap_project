@@ -2,9 +2,6 @@
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 
 public class Fighter extends Aircraft{
@@ -24,12 +21,17 @@ public class Fighter extends Aircraft{
     }
 
     //Constructor
-    public Fighter( double x, double y, double speed, int hp ){
-        this.setCoordinate( x, y );
-        this.setSpeed( speed );
+    public Fighter( double x, double y, double speed, int hp ) {
+        this.setCoordinate(x, y);
+        this.setSpeed(speed);
         this.hp = hp;
         ax.setFitWidth(75);
         ax.setFitHeight(65);
+        setBearing(Math.atan(((this.getCoordinate().getY() - 400) / (this.getCoordinate().getX() - 600)))* (180 / Math.PI));
+        System.out.println(getBearing());
+        ax.setRotate(180 + getBearing());
+        if( this.getCoordinate().getX() > 600 )
+            ax.setRotate(ax.getRotate() + 180);
     }
 
 }
