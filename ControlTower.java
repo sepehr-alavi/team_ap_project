@@ -2,10 +2,12 @@
 
 //Used as main class
 
+import com.sun.javafx.scene.paint.GradientUtils;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -16,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -46,6 +49,33 @@ public class ControlTower extends Application{
         text7.setFill(Color.WHITE);
         text8.setFill(Color.WHITE);
 
+
+        Timeline checkMouseClickTimeline = new Timeline();
+        KeyFrame checkMouseClickKeyFrame= new KeyFrame(Duration.millis(10),event -> {
+            for (int i = 0; i <6 ; i++) {
+                final int index = i;
+                boolean selected = true;
+                antiAircrafts.add(database[i]);
+                database[i].ax.setOnMouseClicked(event1 -> {
+                    System.out.println("clicked");
+                    scene.setOnMouseClicked(event2-> {
+                        Point mousePoint = MouseInfo.getPointerInfo().getLocation();
+                        if (mousePoint.getX() - 270 < 1200 && current.equals("padafandi")) {
+                            ImageView selectedAntiAircraft = new ImageView(database[index].image);
+                            selectedAntiAircraft.setFitHeight(75);
+                            selectedAntiAircraft.setFitWidth(75);
+                            selectedAntiAircraft.setX(mousePoint.getX() - 300);
+                            selectedAntiAircraft.setY(mousePoint.getY() - 145);
+                            root.getChildren().add(selectedAntiAircraft);
+                        }
+
+                    });
+                });
+            }
+        });
+        checkMouseClickTimeline.getKeyFrames().add(checkMouseClickKeyFrame);
+        checkMouseClickTimeline.setCycleCount(Timeline.INDEFINITE);
+        checkMouseClickTimeline.play();
 
 
         root.getChildren().add(text1);
@@ -149,6 +179,10 @@ public class ControlTower extends Application{
 
                     for (int i = 0; i < airLiners.size(); i++)
                         root.getChildren().add(airLiners.get(i).ax);
+
+//                    for(int i=0; i< antiAircrafts.size(); i++)
+//                        root.getChildren().remove(antiAircrafts.get(i).ax);
+
                     backgroundImgView.setImage(furudgahiImg);
                     current = "furudgahi";
                 } else if (current.equals("furudgahi")) {
@@ -158,6 +192,10 @@ public class ControlTower extends Application{
 
                     for (int i = 0; i < fighters.size(); i++)
                         root.getChildren().add(fighters.get(i).ax);
+
+//                    for(int i=0; i< antiAircrafts.size(); i++)
+//                        root.getChildren().add(antiAircrafts.get(i).ax);
+
                     backgroundImgView.setImage(padafandiImg);
                     current = "padafandi";
                 }
