@@ -49,6 +49,18 @@ public class ControlTower extends Application{
         text7.setFill(Color.WHITE);
         text8.setFill(Color.WHITE);
 
+        Image image1 = new Image("Media\\Stop.png");
+
+        ImageView[] ax1 = new ImageView[6];
+
+        for ( int i=0 ; i < 6 ; i++){
+            ax1[i] = new ImageView(image1);
+            ax1[i].setFitWidth(75);
+            ax1[i].setFitHeight(75);
+            ax1[i].setX(1250);
+            ax1[i].setY(100*i + 90);
+        }
+
 
         Timeline checkMouseClickTimeline = new Timeline();
         KeyFrame checkMouseClickKeyFrame= new KeyFrame(Duration.millis(10),event -> {
@@ -67,9 +79,33 @@ public class ControlTower extends Application{
                             selectedAntiAircraft.setX(mousePoint.getX() - 300);
                             selectedAntiAircraft.setY(mousePoint.getY() - 145);
                             root.getChildren().add(selectedAntiAircraft);
+                            setMoney(getMoney() - database[index].getPrice());
+                            moneytxt.textProperty().bind(Bindings.createStringBinding(() -> ("Money:        "+ Integer.toString(getMoney()))));
+
                         }
 
                     });
+                    root.getChildren().removeAll(ax1[4] , ax1[5]);
+                    if ( getMoney() < 1000 ){
+                        root.getChildren().addAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+                    }
+                    else if ( getMoney() < 2000 ){
+                        root.getChildren().addAll(ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+                    }
+                    else if ( getMoney() < 5000 ){
+                        root.getChildren().addAll(ax1[2] , ax1[3] , ax1[4] , ax1[5]);
+                    }
+                    else if ( getMoney() < 10000 ){
+                        root.getChildren().addAll(ax1[3] , ax1[4] , ax1[5]);
+                    }
+                    else if ( getMoney() < 15000 ){
+                        root.getChildren().addAll(ax1[4] , ax1[5]);
+                    }
+                    else if ( getMoney() < 40000 ){
+                        root.getChildren().addAll(ax1[5]);
+                    }
+                    else
+                        root.getChildren().removeAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
 
                 });
             }
@@ -81,40 +117,6 @@ public class ControlTower extends Application{
 
 
 
-        Image image1 = new Image("Media\\Stop.png");
-
-        ImageView[] ax1 = new ImageView[6];
-
-        for ( int i=0 ; i < 6 ; i++){
-            ax1[i] = new ImageView(image1);
-            ax1[i].setFitWidth(75);
-            ax1[i].setFitHeight(75);
-            ax1[i].setX(1250);
-            ax1[i].setY(100*i + 90);
-        }
-        scene.setOnMouseClicked(event -> {
-            root.getChildren().removeAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
-            if ( getMoney() < 1000 ){
-                root.getChildren().addAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
-            }
-            else if ( getMoney() < 2000 ){
-                root.getChildren().addAll(ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
-            }
-            else if ( getMoney() < 5000 ){
-                root.getChildren().addAll(ax1[2] , ax1[3] , ax1[4] , ax1[5]);
-            }
-            else if ( getMoney() < 10000 ){
-                root.getChildren().addAll(ax1[3] , ax1[4] , ax1[5]);
-            }
-            else if ( getMoney() < 15000 ){
-                root.getChildren().addAll(ax1[4] , ax1[5]);
-            }
-            else if ( getMoney() < 4000 ){
-                root.getChildren().addAll(ax1[5]);
-            }
-            else
-                root.getChildren().removeAll(ax1[0] , ax1[1] , ax1[2] , ax1[3] , ax1[4] , ax1[5]);
-        });
 
 
 
