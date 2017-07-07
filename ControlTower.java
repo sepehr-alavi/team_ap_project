@@ -53,13 +53,13 @@ public class ControlTower extends Application{
             for (int i = 0; i <6 ; i++) {
                 final int index = i;
                 boolean selected = true;
-                antiAircrafts.add(database[i]);
                 database[i].ax.setOnMouseClicked(event1 -> {
                     System.out.println("clicked");
                     scene.setOnMouseClicked(event2-> {
                         Point mousePoint = MouseInfo.getPointerInfo().getLocation();
-                        if (mousePoint.getX() - 270 < 1200 && current.equals("padafandi")) {
+                        if (mousePoint.getX() - 270 < 1200 && current.equals("padafandi") && database[index].getPrice()<=getMoney()) {
                             ImageView selectedAntiAircraft = new ImageView(database[index].image);
+                            antiAircrafts.add(selectedAntiAircraft);
                             selectedAntiAircraft.setFitHeight(75);
                             selectedAntiAircraft.setFitWidth(75);
                             selectedAntiAircraft.setX(mousePoint.getX() - 300);
@@ -68,6 +68,7 @@ public class ControlTower extends Application{
                         }
 
                     });
+
                 });
             }
         });
@@ -146,10 +147,9 @@ public class ControlTower extends Application{
         Timeline checkTimeline = new Timeline();
         KeyFrame checkKeyframe = new KeyFrame(Duration.millis(50), event -> {
             //for (int i = 0; i <fighters.size() ; i++) {
-
-                System.out.println(Math.sqrt(Math.pow(fighters.get(0).getCoordinate().getX()-600 , 2) + Math.pow(fighters.get(0).getCoordinate().getY()-400 , 2)));
-                if (Math.sqrt(Math.pow(fighters.get(0).getCoordinate().getX()-600 , 2) + Math.pow(fighters.get(0).getCoordinate().getY()-400 , 2)) < 50){
-                    airPort.setHp(airPort.getHp()-1);
+            if( fighters.size() != 0) {
+                if (Math.sqrt(Math.pow(fighters.get(0).getCoordinate().getX() - 600, 2) + Math.pow(fighters.get(0).getCoordinate().getY() - 400, 2)) < 50) {
+                    airPort.setHp(airPort.getHp() - 1);
                     root.getChildren().remove(fighters.get(0).ax);
                     fighters.remove(0);
                     //game over check she
@@ -162,6 +162,7 @@ public class ControlTower extends Application{
 //                    airLiners.remove(i);
 //                }
 //            }
+            }
         });
 
         checkTimeline.getKeyFrames().add(checkKeyframe);
@@ -214,14 +215,15 @@ public class ControlTower extends Application{
             if (event.getText().equals("m")) {
                 if (current.equals("padafandi")) {
                     primaryStage.setTitle("furudgahi");
+
                     for (int i = 0; i < fighters.size(); i++)
                         root.getChildren().remove(fighters.get(i).ax);
 
                     for (int i = 0; i < airLiners.size(); i++)
                         root.getChildren().add(airLiners.get(i).ax);
 
-//                    for(int i=0; i< antiAircrafts.size(); i++)
-//                        root.getChildren().remove(antiAircrafts.get(i).ax);
+                    for( int i = 0; i < antiAircrafts.size(); i++ )
+                        root.getChildren().remove(antiAircrafts.get(i));
 
                     backgroundImgView.setImage(furudgahiImg);
                     current = "furudgahi";
@@ -232,6 +234,10 @@ public class ControlTower extends Application{
 
                     for (int i = 0; i < fighters.size(); i++)
                         root.getChildren().add(fighters.get(i).ax);
+
+                    for( int i = 0; i < antiAircrafts.size(); i++ )
+                        root.getChildren().add(antiAircrafts.get(i));
+
 
 //                    for(int i=0; i< antiAircrafts.size(); i++)
 //                        root.getChildren().add(antiAircrafts.get(i).ax);
@@ -248,7 +254,7 @@ public class ControlTower extends Application{
     private static int money = 10000;
     private static AntiAircraft[] database = new AntiAircraft[6];
     static ArrayList<Aircraft> savedAircrafts = new ArrayList<Aircraft>();
-    static ArrayList<AntiAircraft> antiAircrafts = new ArrayList<AntiAircraft>();
+    static ArrayList<ImageView> antiAircrafts = new ArrayList<ImageView>();
     static ArrayList<Aircraft> aircrafts = new ArrayList<Aircraft>();
     static ArrayList<Fighter> fighters = new ArrayList<Fighter>();
     static ArrayList<AirPlane> airLiners = new ArrayList<AirPlane>();
@@ -375,7 +381,6 @@ public class ControlTower extends Application{
             //Enaugh money
             if (database[i].getName().equals(name) && money >= database[i].getPrice()) {
                 database[i].setCoordinate(lat, lon);
-                antiAircrafts.add(database[i]);
                 money -= database[i].getPrice();
                 System.out.println(" Buying " + database[i].getName() + "was successful. " + "Money = " + money);
             }
