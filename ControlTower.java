@@ -6,13 +6,15 @@ import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -30,16 +32,16 @@ public class ControlTower extends Application{
 
         Group root = new Group();
         Scene scene = new Scene(root);
-        Text text1 = new Text(1220,30,"Money:       " + Integer.toString(getMoney()));
-        Text text2 = new Text(1220, 60, "hp:              " + Integer.toString(airPort.getHp()));
+        Text moneytxt = new Text(1220,30,"Money:       " + Integer.toString(getMoney()));
+        Text hptxt = new Text(1220, 60, "hp:              " + Integer.toString(airPort.getHp()));
         Text text3 = new Text(1220,100, Integer.toString(database[0].getPrice()));
         Text text4 = new Text(1220,200, Integer.toString(database[1].getPrice()));
         Text text5 = new Text(1220,300, Integer.toString(database[2].getPrice()));
         Text text6 = new Text(1220,400, Integer.toString(database[3].getPrice()));
         Text text7 = new Text(1220,500, Integer.toString(database[4].getPrice()));
         Text text8 = new Text(1220,600, Integer.toString(database[5].getPrice()));
-        text1.setFill(Color.WHITE);
-        text2.setFill(Color.WHITE);
+        moneytxt.setFill(Color.WHITE);
+        hptxt.setFill(Color.WHITE);
         text3.setFill(Color.WHITE);
         text4.setFill(Color.WHITE);
         text5.setFill(Color.WHITE);
@@ -118,8 +120,8 @@ public class ControlTower extends Application{
 
 
 
-        root.getChildren().add(text1);
-        root.getChildren().add(text2);
+        root.getChildren().add(moneytxt);
+        root.getChildren().add(hptxt);
         root.getChildren().addAll(text3 , text4 , text5 , text6 , text7 , text8);
         root.getChildren().addAll(database[0].ax , database[1].ax , database[2].ax , database[3].ax , database[4].ax , database[5].ax);
         root.getChildren().addAll(ax1[4] , ax1[5]);
@@ -175,13 +177,60 @@ public class ControlTower extends Application{
                 Fighter fighter = new Fighter(1135 * random.nextInt(2), random.nextInt(801), 100 + random.nextInt(100), 1500 + random.nextInt(1500));
                 fighters.add(fighter);
                 AirPlane airLiner = new AirPlane(1115 * random.nextInt(2), random.nextInt(801),100 + random.nextInt(100), 100 + random.nextInt(400));
-                if( airLiner.getCoordinate().getX() == 0 )
-                    //airLiner.setBearing(random );
+                if( airLiner.getCoordinate().getX() == 0) {
+                    if (random.nextBoolean() == true) {
+                        airLiner.x = 1115;
+                        airLiner.y = random.nextInt(801);
+                        airLiner.destination = new LineTo(airLiner.x, airLiner.y);
+                    }
+                    else {
+                        airLiner.x = random.nextInt(1115);
+                        airLiner.y = 800 * random.nextInt(2);
+                        airLiner.destination = new LineTo(airLiner.x, airLiner.y);
+                    }
+                }
+                else {
+                    if (random.nextBoolean() == true) {
+                        airLiner.x = 0;
+                        airLiner.y = random.nextInt(801);
+                        airLiner.destination = new LineTo(airLiner.x, airLiner.y);
+                    }
+                    else {
+                        airLiner.x = random.nextInt(1115);
+                        airLiner.y = 800 * random.nextInt(2);
+                        airLiner.destination = new LineTo(airLiner.x, airLiner.y);
+                    }
+                }
                 airLiners.add(airLiner);
             } else { //Top or bottom
                 Fighter fighter = new Fighter(random.nextInt(1135),800 * random.nextInt(2), 100 + random.nextInt(100), 1500 + random.nextInt(1500));
                 fighters.add(fighter);
                 AirPlane airLiner = new AirPlane(random.nextInt(1115), 800 * random.nextInt(2),100 + random.nextInt(100), 100 + random.nextInt(400));
+
+                if( airLiner.getCoordinate().getY() == 0) {
+                    if (random.nextBoolean() == true) {
+                        airLiner.x = random.nextInt(1135);
+                        airLiner.y = 800;
+                        airLiner.destination = new LineTo(airLiner.x, airLiner.y);
+                    }
+                    else {
+                        airLiner.x = 1115 * random.nextInt(2);
+                        airLiner.y = 800 * random.nextInt(2);
+                        airLiner.destination = new LineTo(airLiner.x, airLiner.y);
+                    }
+                }
+                else {
+                    if (random.nextBoolean() == true) {
+                        airLiner.x = random.nextInt(1135);
+                        airLiner.y = 0;
+                        airLiner.destination = new LineTo(airLiner.x, airLiner.y);
+                    }
+                    else {
+                        airLiner.x = 1115 * random.nextInt(2);
+                        airLiner.y = 800 * random.nextInt(2);
+                        airLiner.destination = new LineTo(airLiner.x, airLiner.y);
+                    }
+                }
                 airLiners.add(airLiner);
             }
             Fighter movingFighter = fighters.get(fighters.size() - 1);
@@ -195,15 +244,37 @@ public class ControlTower extends Application{
             MoveTo moveToFighter = new MoveTo(movingFighter.getCoordinate().getX(), movingFighter.getCoordinate().getY());
             movingFighter.path.getElements().addAll(moveToFighter, movingFighter.lineTo);
 
-
+            MoveTo moveToAiliner = new MoveTo(movingAirLiner.getCoordinate().getX(), movingAirLiner.getCoordinate().getY());
+            movingAirLiner.path.getElements().addAll(moveToAiliner, movingAirLiner.destination);
 
             PathTransition pathTransitionFighter = new PathTransition(Duration.millis(20000),
                     movingFighter.path, movingFighter.ax);
 
             PathTransition pathTransitionAirliner = new PathTransition(Duration.millis(20000),
                     movingAirLiner.path, movingAirLiner.ax);
+
             pathTransitionFighter.play();
+            pathTransitionFighter.setOnFinished(event2 ->{
+                root.getChildren().remove(movingFighter.ax);
+                fighters.remove(movingFighter);
+                airPort.setHp(airPort.getHp()-1);
+                hptxt.textProperty().bind(Bindings.createStringBinding(() -> ("hp:              " + Integer.toString(airPort.getHp()))));
+                if (airPort.getHp()==0){
+                    root.getChildren().clear();
+                    Text GameOver = new Text(650, 400,"Game Over");
+                    GameOver.setFont(javafx.scene.text.Font.font(24));
+                    root.getChildren().add(GameOver);
+                    createTimeline.stop();
+                    checkTimeline.stop();
+                    checkMouseClickTimeline.stop();
+                }
+            });
             pathTransitionAirliner.play();
+            pathTransitionAirliner.setOnFinished(event2 ->{
+                root.getChildren().remove(movingAirLiner.ax);
+                airLiners.remove(movingAirLiner);
+            });
+
         });
         createTimeline.getKeyFrames().add(createKeyFrame);
         createTimeline.setCycleCount(Timeline.INDEFINITE);

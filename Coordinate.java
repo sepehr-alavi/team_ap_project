@@ -13,7 +13,7 @@ public class Coordinate {
 
     public void setLat(double lat) {
         this.lat = lat;
-        this.y = 800/180*(90 - lat);
+        this.y = (800/180)*(90 - lat);
     }
 
     public double getLon() {
@@ -22,7 +22,7 @@ public class Coordinate {
 
     public void setLon(double lon) {
         this.lon = lon;
-        this.x = 1200/360*(180 + lon);
+        this.x = (1200/360)*(180 + lon);
     }
 
     public double getX() {
@@ -31,7 +31,7 @@ public class Coordinate {
 
     public void setX(double x) {
         this.x = x;
-        this.lon = (1200/360 * x) - 180;
+        this.lon = (360*x/1200) - 180;
     }
 
     public double getY() {
@@ -40,6 +40,6 @@ public class Coordinate {
 
     public void setY(double y) {
         this.y = y;
-        this.lat = -1*(800/180*y) - 90;
+        this.lat = -1*(180*y/800) - 90;
     }
 }
