@@ -157,13 +157,6 @@ public class ControlTower extends Application{
                     //game over check she
                 }
 
-//            for (int i = 0; i <airLiners.size() ; i++) {
-//                if (distance( airport.getX(), airport.getY(), airLiners.get(i).getX(), airLiners.get(i).getY()) < 20 ){
-//                    paymoney(airLiners.get(i).getPassengerCount());
-//                    root.getChildren().remove(airLiners.get(i).ax);
-//                    airLiners.remove(i);
-//                }
-//            }
             }
         });
 
